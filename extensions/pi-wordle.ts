@@ -131,10 +131,10 @@ export default function piWordle(pi: ExtensionAPI) {
             return;
           }
           if (data === "\x7f" || data === "\b") { // backspace
-            currentInput = currentInput.slice(0, -1); tui.requestRender(); return;
+            currentInput = currentInput.slice(0, -1); version++; tui.requestRender(); return;
           }
           if (data === "\r" || data === "\n") { // enter = submit
-            if (currentInput.length < WORD_LEN) { message = "Not enough letters"; tui.requestRender(); return; }
+            if (currentInput.length < WORD_LEN) { message = "Not enough letters"; version++; tui.requestRender(); return; }
             const guess = currentInput.toLowerCase();
             const grades = gradeGuess(guess, answer);
             guesses.push({ word: guess, grades });
@@ -172,12 +172,12 @@ export default function piWordle(pi: ExtensionAPI) {
                 }
               }
             }
-            tui.requestRender(); return;
+            version++; tui.requestRender(); return;
           }
           // Letter input
           const ch = data.toLowerCase();
           if (/^[a-z]$/.test(ch) && currentInput.length < WORD_LEN) {
-            currentInput += ch; message = ""; tui.requestRender();
+            currentInput += ch; message = ""; version++; tui.requestRender();
           }
         }
 
