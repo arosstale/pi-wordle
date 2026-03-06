@@ -118,12 +118,7 @@ export default function piWordle(pi: ExtensionAPI) {
             if (data === "r" || data === "R") {
               // Only restart in random mode
               if (isRandom) {
-                const newAnswer = getRandomWord();
-                Object.assign(answer, {}); // can't reassign const, use closure trick below
-                guesses.length = 0;
-                "abcdefghijklmnopqrstuvwxyz".split("").forEach(c => keyboard[c] = "unused");
-                currentInput = ""; message = ""; gameOver = false; won = false;
-                // Workaround: re-enter the command
+                // Can't mutate const answer — exit and re-run for fresh game
                 done(undefined);
               }
               return;
