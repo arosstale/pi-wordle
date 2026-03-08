@@ -1,6 +1,6 @@
 {
   "name": "@artale/pi-wordle",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Daily Wordle in the terminal. 6 guesses, color-coded feedback, stats tracking.",
   "keywords": [
     "pi-package",

@@ -97,7 +97,7 @@ function renderTile(ch: string, grade: "correct" | "present" | "absent" | "empty
 export default function piWordle(pi: ExtensionAPI) {
   pi.registerCommand("wordle", {
     description: "Play Wordle! Guess a 5-letter word in 6 tries. /wordle [random]",
-    execute: async (ctx, args) => {
+    handler: async (args, ctx) => {
       if (!ctx.hasUI) { ctx.ui.notify("Wordle requires interactive mode", "error"); return; }
 
       const isRandom = args.trim().toLowerCase() === "random";
